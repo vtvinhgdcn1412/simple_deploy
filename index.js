@@ -129,7 +129,7 @@ app.post('/api/persons', (req, res, next) => {
 
         Person.create(newPerson)
           .then((result) => res.status(200).json(result))
-          .catch((err) => res.status(400).json({ message: `${err.message}` }));
+          .catch((err) => next(err));
       }
     })
     .catch((err) => next(err));

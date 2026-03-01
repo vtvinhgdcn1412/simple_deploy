@@ -1,8 +1,16 @@
 const mongoose = require('mongoose');
 
 const personSchema = new mongoose.Schema({
-  name: String,
-  number: String,
+  name: { type: String, required: true },
+  number: {
+    type: String,
+    minLength: 8,
+    validate: {
+      validator: (v) => {
+        return /^[0-9]+(-[0-9]+)*$/.test(v);
+      },
+    },
+  },
 });
 
 personSchema.set('toJSON', {
