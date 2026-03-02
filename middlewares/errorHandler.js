@@ -1,12 +1,12 @@
 const errorHandler = (err, req, res, next) => {
-  console.log(err.message, err.name);
+  console.log(err.message, err.name, err.errors)
   if (err.name === 'CastError') {
-    return res.status(400).json({ err: 'malformatted id' });
+    return res.status(400).json({ err: 'malformatted id' })
   } else if (err.name === 'ValidationError') {
-    return res.status(400).json({ err: err.message });
+    return res.status(400).json({ err: err.message })
   }
 
-  next(err);
-};
+  next(err)
+}
 
-module.exports = errorHandler;
+module.exports = errorHandler
